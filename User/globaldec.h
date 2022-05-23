@@ -9,5 +9,7 @@ uint16_t touch_x, touch_y;
 
 T_PARTY_DATA party_data;
 
-char counter = 0;
+char buttonCounter = 0;
+char touchCounter = 0;
 char flag_tactile_input = 0;
+char flag_button_reset = 0;

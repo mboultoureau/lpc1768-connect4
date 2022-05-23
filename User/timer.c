@@ -25,16 +25,27 @@ void init_timer()
 
 void TIMER0_IRQHandler()
 {
-	counter++;
+	buttonCounter++;
+	touchCounter++;
+	
+	// On vérifie l'appui d'un bouton toutes les 1s
+	if (buttonCounter >= 100) {
+		
+		if (((LPC_GPIO2->FIOPIN >> 11) & (0x01)) == 0){
+			flag_button_reset = 1;
+		}
+		
+		buttonCounter = 0;
+	}
 	
 	// On vérifie l'écran tactile toutes les 100ms
-	if (counter >= 10) {
+	if (touchCounter >= 10) {
 		// Vérification d'un appui
 		if ((GPIO_ReadValue(0) >> 19 & (1 << 0)) == 0) {
 			flag_tactile_input = 1;
 		}
 		
-		counter = 0;
+		touchCounter = 0;
 	}
 	
 	TIM_ClearIntPending(LPC_TIM0, TIM_MR0_INT);

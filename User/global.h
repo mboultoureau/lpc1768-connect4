@@ -7,5 +7,7 @@
 extern char chaine[30]; // buffer pour l'affichage sur le LCD
 extern uint16_t touch_x, touch_y ;
 extern T_PARTY_DATA party_data;
-extern char counter;
+extern char touchCounter;
+extern char buttonCounter;
 extern char flag_tactile_input;
+extern char flag_button_reset;

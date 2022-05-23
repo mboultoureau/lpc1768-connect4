@@ -54,7 +54,7 @@ void display_victory() {
 	} else {
 		dessiner_rect(55, 50, 120, 120, 1, 1, White, Red);
 		n = sprintf(chaine,"Player RED won!");
-		LCD_write_english_string(50, 200, chaine, White, Black);
+		LCD_write_english_string(55, 200, chaine, White, Black);
 	}
 
 	n = sprintf(chaine, "Rouge : %d / Jaune : %d", score_data.red, score_data.yellow);
@@ -189,6 +189,15 @@ int main(void)
 		init_timer();		
 	  
     while(1) {
+			// Appui sur le bouton reset
+			if (flag_button_reset == 1) {
+				reset_board();
+				reset_score();
+				display_board();
+				flag_button_reset = 0;
+				continue;
+			}
+			
 			// Appui tactile
 			if (flag_tactile_input == 1) {
 				// Si il y a une victoire
